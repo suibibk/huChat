@@ -1,0 +1,52 @@
+<html>
+<head>
+<meta charset='utf-8'>
+<title>胡聊</title>
+<script type="text/javascript" src="./js/jquery-1.10.1.min.js"></script>
+<script type="text/javascript">
+	var user="user1";
+	var target="ws://112.74.37.59:8080/webProject/websocket/"+user;
+	var ws;
+	$(function(){
+		connect();
+	});
+	function connect(){
+		if('WebSocket' in window){
+			ws=new WebSocket(target);
+		}else if('MozWebSocket' in window){
+			ws=new MozWebSocket(target);
+		}else{
+			alert('WebSocket is not supported by this browser.');
+			return;
+		}
+		ws.onerror = function(){
+			alert("发送错误");
+		}
+		ws.onopen = function(){
+			alert("建立连接")
+		}
+		ws.onclose = function(){
+			alert("关闭WebSocket连接")
+		}
+		//在打开连接后开启消息监听
+   		ws.onmessage=function(event){
+        	 if(typeof(event.data)=="string"){  
+        		 eval("var result="+event.data);
+        		 console.log("result:"+result);
+             }
+        }
+    }
+	
+	function send(){
+		var msg=$("#msg").val();
+		ws.send(user+"|"+msg);
+	}
+</script>
+  </head>
+  <body>
+		<div id="input">
+			<textarea id="msg"></textarea>
+			<span id="btn" onclick="send();">发送</span>
+		</div>
+  </body>
+</html>

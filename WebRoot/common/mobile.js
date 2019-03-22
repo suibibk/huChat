@@ -1,0 +1,32 @@
+	var sUserAgent = navigator.userAgent.toLowerCase(); 
+	var wechat = sUserAgent.match(/wechat/i) == "wechat";   
+	var bIsIpad = sUserAgent.match(/ipad/i) == "ipad";    
+	var bIsIphoneOs = sUserAgent.match(/iphone os/i) == "iphone os";  
+	var bIsMidp = sUserAgent.match(/midp/i) == "midp";  
+	var bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) == "rv:1.2.3.4";  
+	var bIsUc = sUserAgent.match(/ucweb/i) == "ucweb";  
+	var bIsAndroid = sUserAgent.match(/android/i) == "android";  
+	var bIsCE = sUserAgent.match(/windows ce/i) == "windows ce";  
+	var bIsWM = sUserAgent.match(/windows mobile/i) == "windows mobile"; 
+	if(wechat||bIsIpad||bIsIphoneOs||bIsMidp||bIsUc7||bIsUc||bIsAndroid||bIsCE||bIsWM){
+		var oMeta1 = document.createElement('meta');
+		oMeta1.content ="width=device-width,initial-scale=1, maximum-scale=1,user-scalable=no";
+		oMeta1.name = "viewport";
+		var oMeta2 = document.createElement('meta');
+		oMeta2.content ="black";
+		oMeta2.name = "apple-mobile-web-app-capable";
+		var oMeta3 = document.createElement('meta');
+		oMeta3.content ="yes";
+		oMeta3.name = "apple-mobile-web-app-capable";
+		var oMeta4 = document.createElement('meta');
+		oMeta4.content ="email=no";
+		oMeta4.name = "format-detection";
+		var oMeta5 = document.createElement('meta');
+		oMeta5.content ="telephone=no";
+		oMeta5.name = "format-detection";
+		document.getElementsByTagName('head')[0].appendChild(oMeta1);
+		document.getElementsByTagName('head')[0].appendChild(oMeta2);
+		document.getElementsByTagName('head')[0].appendChild(oMeta3);
+		document.getElementsByTagName('head')[0].appendChild(oMeta4);
+		document.getElementsByTagName('head')[0].appendChild(oMeta5);
+	}
